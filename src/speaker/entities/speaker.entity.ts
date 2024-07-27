@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
-export class Microphone {
+export class Speaker {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -34,10 +34,25 @@ export class Microphone {
   @Column('text', {
     nullable: false,
   })
-  micType: string;
+  speakerType: string;
+
+  @Column('int', {
+    nullable: false,
+  })
+  power: number;
+
+  @Column('int', {
+    nullable: false,
+  })
+  diameter: number;
 
   @Column('text', {
     nullable: false,
   })
-  polarPattern: string;
+  energyConnection: string;
+
+  @Column('text', {
+    nullable: false,
+  })
+  audioConnection: number;
 }

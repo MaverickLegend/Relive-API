@@ -3,14 +3,14 @@ import {
   Get,
   Post,
   Body,
-  // Patch,
+  Patch,
   Param,
   Delete,
   ParseUUIDPipe,
 } from '@nestjs/common';
 import { MicrophoneService } from './microphone.service';
 import { CreateMicrophoneDto } from './dto/create-microphone.dto';
-// import { UpdateMicrophoneDto } from './dto/update-microphone.dto';
+import { UpdateMicrophoneDto } from './dto/update-microphone.dto';
 
 @Controller('microphone')
 export class MicrophoneController {
@@ -31,11 +31,14 @@ export class MicrophoneController {
     return this.microphoneService.findOne(id);
   }
 
-  // @Patch(':id')
-  // update(@Param('id') id: string, @Body() updateMicrophoneDto: UpdateMicrophoneDto) {
-  //   return this.microphoneService.update(+id, updateMicrophoneDto);
-  // }
-
+  @Patch(':id')
+  update(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body() updateMicrophoneDto: UpdateMicrophoneDto,
+  ) {
+    return this.microphoneService.update(id, updateMicrophoneDto);
+  }
+  s;
   @Delete(':id')
   remove(@Param('id', ParseUUIDPipe) id: string) {
     return this.microphoneService.remove(id);

@@ -1,6 +1,10 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateMicrophoneDto } from './dto/create-microphone.dto';
-// import { UpdateMicrophoneDto } from './dto/update-microphone.dto';
+import { UpdateMicrophoneDto } from './dto/update-microphone.dto';
 import { Repository } from 'typeorm';
 import { Microphone } from './entities/microphone.entity';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -35,9 +39,22 @@ export class MicrophoneService {
     return microphone;
   }
 
-  // update(id: number, updateMicrophoneDto: UpdateMicrophoneDto) {
-  //   return `This action updates a #${id} microphone`;
-  // }
+  async update(id: string, updateMicrophoneDto: UpdateMicrophoneDto) {
+    const microphone = await this.microphoneRepository.preload({
+      id: id,
+      ...updateMicrophoneDto,
+    });
+
+    if (!microphone) {
+      throw new NotFoundException(`Microphone with id ${id} not found`);
+    }
+    try {
+      await this.microphoneRepository.save(microphone);
+      return microphone;
+    } catch (error) {
+      throw new BadRequestException(error);
+    }
+  }
 
   async remove(id: string) {
     const microphone = await this.findOne(id);

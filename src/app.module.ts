@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { InventoryModule } from './inventory/inventory.module';
 import { MicrophoneModule } from './microphone/microphone.module';
+import { SpeakerModule } from './speaker/speaker.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { MicrophoneModule } from './microphone/microphone.module';
     }),
     InventoryModule,
     MicrophoneModule,
+    SpeakerModule,
   ],
 })
 export class AppModule {}
