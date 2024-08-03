@@ -3,10 +3,11 @@ import { MicrophoneService } from './microphone.service';
 import { MicrophoneController } from './microphone.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Microphone } from './entities/microphone.entity';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
   controllers: [MicrophoneController],
   providers: [MicrophoneService],
-  imports: [TypeOrmModule.forFeature([Microphone])],
+  imports: [TypeOrmModule.forFeature([Microphone]), AuthModule],
 })
 export class MicrophoneModule {}

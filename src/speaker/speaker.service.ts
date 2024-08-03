@@ -1,9 +1,14 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateSpeakerDto } from './dto/create-speaker.dto';
 // import { UpdateSpeakerDto } from './dto/update-speaker.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Speaker } from './entities/speaker.entity';
+import { UpdateSpeakerDto } from './dto/update-speaker.dto';
 
 @Injectable()
 export class SpeakerService {
@@ -35,9 +40,22 @@ export class SpeakerService {
     return speaker;
   }
 
-  // update(id: number, updateSpeakerDto: UpdateSpeakerDto) {
-  //   return `This action updates a #${id} speaker`;
-  // }
+  async update(id: string, updateSpeakerDto: UpdateSpeakerDto) {
+    const speaker = await this.speakerRepository.preload({
+      id: id,
+      ...updateSpeakerDto,
+    });
+
+    if (!speaker) {
+      throw new NotFoundException(`Speaker with id ${id} not found`);
+    }
+    try {
+      await this.speakerRepository.save(speaker);
+      return speaker;
+    } catch (error) {
+      throw new BadRequestException(error);
+    }
+  }
 
   async remove(id: string) {
     const speaker = await this.findOne(id);

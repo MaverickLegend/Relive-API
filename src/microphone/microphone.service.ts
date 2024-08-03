@@ -52,6 +52,7 @@ export class MicrophoneService {
       await this.microphoneRepository.save(microphone);
       return microphone;
     } catch (error) {
+      console.log(error);
       throw new BadRequestException(error);
     }
   }

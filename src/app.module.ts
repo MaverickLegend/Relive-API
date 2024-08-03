@@ -6,6 +6,8 @@ import { MicrophoneModule } from './microphone/microphone.module';
 import { SpeakerModule } from './speaker/speaker.module';
 import { AuthModule } from './auth/auth.module';
 import { CommonModule } from './common/common.module';
+import { AudioConsoleModule } from './audio-console/audio-console.module';
+import { LightModule } from './light/light.module';
 
 @Module({
   imports: [
@@ -27,6 +29,8 @@ import { CommonModule } from './common/common.module';
     SpeakerModule,
     AuthModule,
     CommonModule,
+    AudioConsoleModule,
+    LightModule,
   ],
 })
 export class AppModule {}
