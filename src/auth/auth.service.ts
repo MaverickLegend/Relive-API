@@ -49,7 +49,14 @@ export class AuthService {
       const user = await this.userRepository.findOne({
         where: { email },
         // Solo seleccionamos el email, password e id del usuario
-        select: { email: true, password: true, id: true },
+        select: {
+          email: true,
+          password: true,
+          id: true,
+          roles: true,
+          isActive: true,
+          fullName: true,
+        },
       });
       // Si no encontramos un usuario con el email proporcionado lanzamos un UnauthorizedException
       if (!user) {
@@ -61,7 +68,7 @@ export class AuthService {
       }
       // Si las contraseñas coinciden, eliminamos la contraseña del objeto user y retornamos el usuario con un token JWT
       return {
-        ...user,
+        user: { ...user },
         // Generamos un token JWT con el id del usuario
         token: this.getJwtToken({ id: user.id }),
       };

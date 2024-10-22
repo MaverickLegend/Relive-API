@@ -25,7 +25,7 @@ export class MicrophoneController {
   }
 
   @Get()
-  @Auth()
+  // @Auth()
   findAll() {
     return this.microphoneService.findAll();
   }
