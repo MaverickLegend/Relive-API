@@ -10,8 +10,8 @@ import {
 } from '@nestjs/common';
 import { SpeakerService } from './speaker.service';
 import { CreateSpeakerDto } from './dto/create-speaker.dto';
-import { Auth } from 'src/auth/decorators';
-import { ValidRoles } from 'src/auth/interface/valid-roles';
+// import { Auth } from 'src/auth/decorators';
+// import { ValidRoles } from 'src/auth/interface/valid-roles';
 import { UpdateSpeakerDto } from './dto/update-speaker.dto';
 // import { UpdateSpeakerDto } from './dto/update-speaker.dto';
 

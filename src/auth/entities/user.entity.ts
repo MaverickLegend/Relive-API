@@ -33,9 +33,17 @@ export class User {
   @BeforeInsert()
   checkFieldsBeforeInsert() {
     this.email = this.email.toLowerCase().trim();
+    this.ensureUserRole();
   }
   @BeforeUpdate()
   checkFieldsBeforeUpdate() {
     this.checkFieldsBeforeInsert();
+    this.ensureUserRole();
+  }
+
+  private ensureUserRole() {
+    if (!this.roles.includes('user')) {
+      this.roles.push('user'); // Asegurar que el rol "user" esté incluido
+    }
   }
 }

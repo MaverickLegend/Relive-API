@@ -66,9 +66,10 @@ export class AuthService {
       if (!bcrypt.compareSync(password, user.password)) {
         throw new UnauthorizedException('Invalid credentials');
       }
-      // Si las contraseñas coinciden, eliminamos la contraseña del objeto user y retornamos el usuario con un token JWT
+      // Si las contraseñas coinciden, quitamos la contraseña del objeto user y retornamos el usuario con un token JWT
+      delete user.password;
       return {
-        user: { ...user },
+        user,
         // Generamos un token JWT con el id del usuario
         token: this.getJwtToken({ id: user.id }),
       };

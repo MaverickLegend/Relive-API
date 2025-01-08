@@ -1,4 +1,5 @@
 import {
+  IsArray,
   IsEmail,
   IsString,
   Matches,
@@ -23,4 +24,9 @@ export class CreateUserDto {
       'The password must have a Uppercase, lowercase letter and a number',
   })
   password: string;
+
+  @IsArray()
+  @IsString({ each: true })
+  @MinLength(1, { each: true })
+  roles: string[];
 }
