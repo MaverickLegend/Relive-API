@@ -1,5 +1,6 @@
-import { Microphone } from 'src/microphone/entities/microphone.entity';
-import { Speaker } from 'src/speaker/entities/speaker.entity';
+import { Microphone } from 'src/modules/inventory/modules/microphone/entities/microphone.entity';
+import { Speaker } from 'src/modules/inventory/modules/speaker/entities/speaker.entity';
+import { AudioConsole } from 'src/modules/inventory/modules/audio-console/entities/audio-console.entity';
 import {
   Column,
   Entity,
@@ -32,4 +33,8 @@ export class Inventory {
   @OneToOne(() => Speaker)
   @JoinColumn()
   speaker: Speaker;
+
+  @OneToOne(() => AudioConsole)
+  @JoinColumn()
+  audioConsole: AudioConsole;
 }

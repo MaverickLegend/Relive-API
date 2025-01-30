@@ -4,10 +4,10 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Inventory } from './entities/inventory.entity';
 import { Repository } from 'typeorm';
-import { Microphone } from 'src/microphone/entities/microphone.entity';
-import { Speaker } from 'src/speaker/entities/speaker.entity';
-import { AudioConsole } from 'src/audio-console/entities/audio-console.entity';
-import { Light } from 'src/light/entities/light.entity';
+import { Microphone } from 'src/modules/inventory/modules/microphone/entities/microphone.entity';
+import { Speaker } from 'src/modules/inventory/modules/speaker/entities/speaker.entity';
+import { AudioConsole } from 'src/modules/inventory/modules/audio-console/entities/audio-console.entity';
+import { Light } from 'src/modules/inventory/modules/light/entities/light.entity';
 
 @Injectable()
 export class InventoryService {

@@ -11,8 +11,8 @@ import {
 import { MicrophoneService } from './microphone.service';
 import { CreateMicrophoneDto } from './dto/create-microphone.dto';
 import { UpdateMicrophoneDto } from './dto/update-microphone.dto';
-import { Auth } from 'src/auth/decorators';
-import { ValidRoles } from 'src/auth/interface/valid-roles';
+import { Auth } from 'src/modules/auth/decorators';
+import { ValidRoles } from 'src/modules/auth/interface/valid-roles';
 
 @Controller('microphone')
 export class MicrophoneController {

@@ -3,7 +3,7 @@ import { SpeakerService } from './speaker.service';
 import { SpeakerController } from './speaker.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Speaker } from './entities/speaker.entity';
-import { AuthModule } from 'src/auth/auth.module';
+import { AuthModule } from 'src/modules/auth/auth.module';
 @Module({
   controllers: [SpeakerController],
   providers: [SpeakerService],

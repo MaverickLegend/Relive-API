@@ -1,13 +1,15 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { InventoryModule } from './inventory/inventory.module';
-import { MicrophoneModule } from './microphone/microphone.module';
-import { SpeakerModule } from './speaker/speaker.module';
-import { AuthModule } from './auth/auth.module';
+import { InventoryModule } from './modules/inventory/inventory.module';
+import { MicrophoneModule } from './modules/inventory/modules/microphone/microphone.module';
+import { SpeakerModule } from './modules/inventory/modules/speaker/speaker.module';
+import { AuthModule } from './modules/auth/auth.module';
 import { CommonModule } from './common/common.module';
-import { AudioConsoleModule } from './audio-console/audio-console.module';
-import { LightModule } from './light/light.module';
+import { AudioConsoleModule } from './modules/inventory/modules/audio-console/audio-console.module';
+import { LightModule } from './modules/inventory/modules/light/light.module';
+import { TasksModule } from './modules/tasks/tasks.module';
+import { UsersModule } from './modules/users/users.module';
 
 @Module({
   imports: [
@@ -31,6 +33,8 @@ import { LightModule } from './light/light.module';
     CommonModule,
     AudioConsoleModule,
     LightModule,
+    TasksModule,
+    UsersModule,
   ],
 })
 export class AppModule {}
